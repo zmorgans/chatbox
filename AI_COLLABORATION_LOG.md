@@ -1,4 +1,4 @@
-## Tool Manifest
+## 1) Tool Manifest
 
 1. **Gemini CLI** – Used for generating code snippets and automating repetitive coding tasks. It helped speed up development and maintain consistent coding patterns across the project.  
 2. **ChatGPT** – Utilized for brainstorming solutions, debugging guidance, and clarifying conceptual or technical questions during development.  
