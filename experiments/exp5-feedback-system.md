@@ -1,34 +1,43 @@
-# Experiment #5 — Improved Feedback System (Context-Aware)
+Git Branch: experiment/improved-feedback-system
+Hypothesis:
 
-## Goal
-Make feedback more specific, actionable, and efficient by refining prompts and context handling.
+We believed that using a dedicated external evaluation API (instead of only LLM prompting) would produce more objective, structured, and higher-quality debate feedback. By integrating an external API tool, the system would behave more like an agent capable of using specialized tools to evaluate arguments.
 
-## Hypothesis
-If we refactor the feedback prompt and context usage, we will:
-- Get clearer suggestions (e.g., argument structure, evidence, tone)  
-- Avoid repetitive comments  
-- Reduce token usage / cost  
+Method:
 
-## Implementation
-- Rewrote the feedback prompt to explicitly ask for:
-  - Strengths
-  - Weaknesses
-  - Suggestions for improvement
-- Ensured the model sees the full debate transcript once, not repeated
-- Removed redundant API calls and simplified backend code
+Integrated an external API endpoint designed for evaluation/analysis.
 
-## Test Cases
+Updated the feedback function to send the user’s argument + AI rebuttal to the API.
 
-### Test 1 — Specificity
-**Before:** Feedback like “You could improve your argument by adding more detail.”  
-**After:** Feedback like “You should add specific examples to support your claim about economic impact, and address the opponent’s point on job loss directly.”
+Parsed the returned JSON to generate structured feedback categories (clarity, logic, structure, tone, weaknesses, improvements).
 
-### Test 2 — Redundancy & Cost
-- Old behavior: Sometimes repeated the same advice across multiple runs  
-- New behavior: More varied, targeted feedback; fewer tokens consumed in logs
+Refactored the backend to support API calls without blocking the debate flow.
 
-## Outcome
-Feedback is now more helpful for learning and less wasteful in terms of API usage.
+Ensured API results were stored and displayed in the Debate History panel.
 
-## Decision
-✅ Merged `experiment/improved-feedback-system` into `main`.
+Evaluation:
+
+Before:
+
+Feedback was generated entirely by the LLM → often vague or repetitive.
+
+Sometimes lacked clear reasoning or actionable steps.
+
+After:
+
+The API returned consistent, structured categories (e.g., “Logical Fallacy Found,” “Supporting Evidence Missing”).
+
+Feedback became more objective and less stylistically random.
+
+Users received specific breakdowns like:
+
+“Your argument lacks causal evidence for your economic claim.”
+
+“Opponent successfully refuted point #2; consider adding a counterexample.”
+
+Because an external tool was used, feedback quality no longer depended solely on LLM creative variability.
+
+Decision:
+
+✅ Merged into main.
+This integration counts as our Advanced Feature because it demonstrates a Basic Agent Capability — the system intelligently calls an external API tool to enhance functionality beyond standard prompting.
