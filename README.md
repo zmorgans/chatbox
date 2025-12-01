@@ -1,7 +1,7 @@
 # AI Debate Partner
 
 Practice and sharpen your debate skills with an AI opponent that challenges your arguments across three rounds.
-
+https://youtu.be/Ta_MwT1NR7U?si=dtyvDmuxSYXPZ9Cd
 ## Features
 
 - **3-Round Debates**: Opening, Rebuttal, and Closing rounds
